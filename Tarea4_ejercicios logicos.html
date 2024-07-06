@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicios de Lógica de Programación</title>
+    <script>
+        function mostrarMenu() {
+            let menu = "Seleccione una opción:\n";
+            menu += "1. Divisores de un número\n";
+            menu += "2. Número perfecto\n";
+            menu += "3. Número primo\n";
+            menu += "4. Primo gemelo\n";
+            menu += "5. Concatenar dos cadenas\n";
+            menu += "6. Buscar una subcadena\n";
+            menu += "7. Insertar una subcadena\n";
+            menu += "8. Eliminar una subcadena\n";
+            menu += "9. Convertir un arreglo a cadena\n";
+            menu += "10. Mayor de un arreglo\n";
+            menu += "11. Buscar en un arreglo\n";
+            menu += "12. Insertar en un arreglo\n";
+            menu += "13. Eliminar de un arreglo\n";
+            menu += "14. Convertir una cadena a arreglo\n";
+            menu += "15. Base 10 a base 2\n";
+            menu += "16. Base 10 a base 8\n";
+            menu += "17. Base 10 a base 16\n";
+            menu += "18. Base 2 a base 10\n";
+            menu += "19. Base 2 a base 8\n";
+            menu += "20. Base 2 a base 16\n";
+            menu += "0. Salir\n";
+            return menu;
+        }
+
+        function divisores(num) {
+            let resultado = [];
+            for (let i = 1; i <= num; i++) {
+                if (num % i === 0) {
+                    resultado.push(i);
+                }
+            }
+            return resultado;
+        }
+
+        function esPerfecto(num) {
+            let suma = 0;
+            for (let i = 1; i < num; i++) {
+                if (num % i === 0) {
+                    suma += i;
+                }
+            }
+            return suma === num;
+        }
+
+        function esPrimo(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function esPrimoGemelo(num) {
+            if (esPrimo(num) && (esPrimo(num - 2) || esPrimo(num + 2))) {
+                return true;
+            }
+            return false;
+        }
+
+        function concatenarCadenas(cadena1, cadena2) {
+            return cadena1 + cadena2;
+        }
+
+        function buscarSubcadena(cadena, subcadena) {
+            return cadena.includes(subcadena);
+        }
+
+        function insertarSubcadena(cadena, subcadena, posicion) {
+            return cadena.slice(0, posicion) + subcadena + cadena.slice(posicion);
+        }
+
+        function eliminarSubcadena(cadena, subcadena) {
+            return cadena.replace(subcadena, '');
+        }
+
+        function arregloACadena(arr) {
+            return arr.join('');
+        }
+
+        function mayorArreglo(arr) {
+            return Math.max(...arr);
+        }
+
+        function buscarEnArreglo(arr, elemento) {
+            return arr.includes(elemento);
+        }
+
+        function insertarEnArreglo(arr, elemento, posicion) {
+            arr.splice(posicion, 0, elemento);
+            return arr;
+        }
+
+        function eliminarDeArreglo(arr, posicion) {
+            arr.splice(posicion, 1);
+            return arr;
+        }
+
+        function cadenaAArreglo(cadena) {
+            return cadena.split('');
+        }
+
+        function base10ABase2(num) {
+            return num.toString(2);
+        }
+
+        function base10ABase8(num) {
+            return num.toString(8);
+        }
+
+        function base10ABase16(num) {
+            return num.toString(16);
+        }
+
+        function base2ABase10(num) {
+            return parseInt(num, 2);
+        }
+
+        function base2ABase8(num) {
+            return parseInt(num, 2).toString(8);
+        }
+
+        function base2ABase16(num) {
+            return parseInt(num, 2).toString(16);
+        }
+
+        function main() {
+            while (true) {
+                let menu = mostrarMenu();
+                let opcion = parseInt(prompt(menu));
+
+                if (opcion === 0) {
+                    break;
+                }
+
+                switch (opcion) {
+                    case 1:
+                        let num1 = parseInt(prompt("Ingrese un número:"));
+                        alert("Divisores: " + divisores(num1));
+                        break;
+                    case 2:
+                        let num2 = parseInt(prompt("Ingrese un número:"));
+                        alert("¿Es perfecto?: " + esPerfecto(num2));
+                        break;
+                    case 3:
+                        let num3 = parseInt(prompt("Ingrese un número:"));
+                        alert("¿Es primo?: " + esPrimo(num3));
+                        break;
+                    case 4:
+                        let num4 = parseInt(prompt("Ingrese un número:"));
+                        alert("¿Es primo gemelo?: " + esPrimoGemelo(num4));
+                        break;
+                    case 5:
+                        let cadena1 = prompt("Ingrese la primera cadena:");
+                        let cadena2 = prompt("Ingrese la segunda cadena:");
+                        alert("Cadenas concatenadas: " + concatenarCadenas(cadena1, cadena2));
+                        break;
+                    case 6:
+                        let cadena = prompt("Ingrese la cadena:");
+                        let subcadena = prompt("Ingrese la subcadena:");
+                        alert("¿Subcadena encontrada?: " + buscarSubcadena(cadena, subcadena));
+                        break;
+                    case 7:
+                        let cadena7 = prompt("Ingrese la cadena:");
+                        let subcadena7 = prompt("Ingrese la subcadena:");
+                        let posicion7 = parseInt(prompt("Ingrese la posición:"));
+                        alert("Cadena resultante: " + insertarSubcadena(cadena7, subcadena7, posicion7));
+                        break;
+                    case 8:
+                        let cadena8 = prompt("Ingrese la cadena:");
+                        let subcadena8 = prompt("Ingrese la subcadena:");
+                        alert("Cadena resultante: " + eliminarSubcadena(cadena8, subcadena8));
+                        break;
+                    case 9:
+                        let arr9 = prompt("Ingrese el arreglo (separado por comas):").split(",");
+                        alert("Arreglo a cadena: " + arregloACadena(arr9));
+                        break;
+                    case 10:
+                        let arr10 = prompt("Ingrese el arreglo (separado por comas):").split(",").map(Number);
+                        alert("Mayor elemento del arreglo: " + mayorArreglo(arr10));
+                        break;
+                    case 11:
+                        let arr11 = prompt("Ingrese el arreglo (separado por comas):").split(",");
+                        let elem11 = prompt("Ingrese el elemento a buscar:");
+                        alert("¿Elemento encontrado?: " + buscarEnArreglo(arr11, elem11));
+                        break;
+                    case 12:
+                        let arr12 = prompt("Ingrese el arreglo (separado por comas):").split(",");
+                        let elem12 = prompt("Ingrese el elemento a insertar:");
+                        let posicion12 = parseInt(prompt("Ingrese la posición:"));
+                        alert("Arreglo resultante: " + insertarEnArreglo(arr12, elem12, posicion12));
+                        break;
+                    case 13:
+                        let arr13 = prompt("Ingrese el arreglo (separado por comas):").split(",");
+                        let posicion13 = parseInt(prompt("Ingrese la posición del elemento a eliminar:"));
+                        alert("Arreglo resultante: " + eliminarDeArreglo(arr13, posicion13));
+                        break;
+                    case 14:
+                        let cadena14 = prompt("Ingrese la cadena:");
+                        alert("Cadena a arreglo: " + cadenaAArreglo(cadena14));
+                        break;
+                    case 15:
+                        let num15 = parseInt(prompt("Ingrese un número en base 10:"));
+                        alert("Base 10 a base 2: " + base10ABase2(num15));
+                        break;
+                    case 16:
+                        let num16 = parseInt(prompt("Ingrese un número en base 10:"));
+                        alert("Base 10 a base 8: " + base10ABase8(num16));
+                        break;
+                    case 17:
+                        let num17 = parseInt(prompt("Ingrese un número en base 10:"));
+                        alert("Base 10 a base 16: " + base10ABase16(num17));
+                        break;
+                    case 18:
+                        let num18 = prompt("Ingrese un número en base 2:");
+                        alert("Base 2 a base 10: " + base2ABase10(num18));
+                        break;
+                    case 19:
+                        let num19 = prompt("Ingrese un número en base 2:");
+                        alert("Base 2 a base 8: " + base2ABase8(num19));
+                        break;
+                    case 20:
+                        let num20 = prompt("Ingrese un número en base 2:");
+                        alert("Base 2 a base 16: " + base2ABase16(num20));
+                        break;
+                    default:
+                        alert("Opción no válida.");
+                }
+            }
+        }
+
+        main();
+    </script>
+</head>
+<body>
+</body>
+</html>
